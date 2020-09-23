@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/playerShip1_blue.png" type="Texture" id=2]
+[ext_resource path="res://Player/Laser.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 522.552, 507.703 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="player" type="Sprite" parent="."]
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2( 0.6, 0.6 )
+polygon = PoolVector2Array( 12.5, -34.9, 16.2, -14.5, 17.1, -14.5, 35.8, -2.7, 42.6, -10.5, 49.3, -10.5, 49.5, 24.7, 46.6, 29.5, 42.7, 29.5, 39.7, 26.5, 16.4, 31.2, 11.9, 37.5, -12.2, 37.5, -18.4, 30.5, -22.8, 30.5, -39.8, 25.5, -45.2, 29.8, -47.5, 28.8, -47.5, 27.3, -49.5, 25.3, -49.5, -9.5, -48.9, -9.5, -41.5, -10.9, -41.5, -8.4, -35.9, -3.5, -17.5, -12.8, -12.5, -34.9, -12.5, -37.5, 12.5, -37.5 )
+
+[node name="Damage" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="Laser" type="RayCast2D" parent="."]
+position = Vector2( 0, -35 )
+cast_to = Vector2( 0, 0 )
+script = ExtResource( 3 )
+
+[node name="Target" type="Area2D" parent="Laser"]
+position = Vector2( -522.552, -472.703 )
+monitoring = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser/Target"]
+shape = SubResource( 2 )
+
+[node name="Line2D" type="Line2D" parent="Laser"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 3.0
+default_color = Color( 0.454902, 0.752941, 0.988235, 1 )
+[connection signal="body_entered" from="Damage" to="." method="_on_Damage_body_entered"]
+[connection signal="body_entered" from="Laser/Target" to="Laser" method="_on_Target_body_entered"]
