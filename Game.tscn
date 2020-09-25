@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Kenney Future.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://HUD/HUD.gd" type="Script" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/darkPurple.png" type="Texture" id=4]
 [ext_resource path="res://Level/Level.gd" type="Script" id=5]
+[ext_resource path="res://Assets/ufoYellow.png" type="Texture" id=6]
 [ext_resource path="res://Enemy/Enemies.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
@@ -31,7 +32,6 @@ autostart = true
 [node name="Explosions" type="Node2D" parent="."]
 
 [node name="Level" type="Area2D" parent="."]
-visible = false
 position = Vector2( 363, 505.5 )
 monitoring = false
 script = ExtResource( 5 )
@@ -41,6 +41,7 @@ __meta__ = {
 
 [node name="level" type="Sprite" parent="Level"]
 position = Vector2( 1.5, 1.8 )
+texture = ExtResource( 6 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
 position = Vector2( 1.5, 1.8 )
