@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/Enemy3.gd" type="Script" id=1]
 [ext_resource path="res://Assets/enemyRed4.png" type="Texture" id=2]
 
 [node name="Enemy" type="KinematicBody2D"]
@@ -20,3 +20,13 @@ texture = ExtResource( 2 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2( 2.5, 2.5 )
 polygon = PoolVector2Array( 41, -33.3, 41, 24, 17, 38.1, 17, 39.6, 15.4, 42, -15, 42, -16.3, 39, -17.6, 39, -41, 24.4, -41, -33.3, -25.2, -42, -3, -42, -3, -41, -2.3, -37, 2, -37, 2, -42, 25.2, -42 )
+
+[node name="Move" type="Timer" parent="."]
+autostart = true
+
+[node name="Shoot" type="Timer" parent="."]
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="timeout" from="Move" to="." method="_on_Move_timeout"]
+[connection signal="timeout" from="Shoot" to="." method="_on_Shoot_timeout"]

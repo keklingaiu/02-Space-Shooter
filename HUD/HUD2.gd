@@ -10,7 +10,7 @@ func _ready():
 func update_score(s):
 	global.score += s
 	$Score.text = "Score: " + str(global.score)
-	if global.score >= 200 and global.level != 3:
+	if global.score >= 500 and global.level != 3:
 		get_node("/root/Game/Level2").show()
 		get_node("/root/Game/Level2").monitoring = true;
 

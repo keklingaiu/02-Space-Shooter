@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://HUD/HUD2.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Kenney Future.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,10 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
 font_data = ExtResource( 2 )
 
 [node name="Game" type="Node2D"]
@@ -70,8 +74,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="HUD"]
+margin_left = 350.0
+margin_top = 0.5
+margin_right = 650.0
+margin_bottom = 40.5
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Points required for level 2:
+500"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Level2" type="Area2D" parent="."]
-position = Vector2( 355.675, 509.824 )
+position = Vector2( 380, 520 )
+scale = Vector2( 0.3, 0.3 )
+monitoring = false
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_group_": true
@@ -82,5 +104,7 @@ texture = ExtResource( 7 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level2"]
 polygon = PoolVector2Array( 29.5, -40.8, 29.5, -39.4, 41.5, -28.4, 41.5, -26.1, 45.5, -20.1, 45.5, 19.2, 40.8, 29.5, 39.4, 29.5, 28.4, 41.5, 26.1, 41.5, 20.1, 45.5, -20.7, 45.5, -29.5, 40.7, -29.5, 39.4, -42.5, 27.4, -42.5, 25.1, -45.5, 20.3, -45.5, -19.5, -41.9, -28.5, -40.5, -28.5, -32.5, -38.5, -30, -38.5, -18.7, -45.5, 19.2, -45.5 )
+
+[node name="Bullets" type="Node2D" parent="."]
 [connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Level2" to="Level2" method="_on_Level_body_entered"]
