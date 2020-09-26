@@ -83,7 +83,7 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "Points required for level 2:
-500"
+300"
 align = 1
 valign = 1
 __meta__ = {
